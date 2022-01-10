@@ -63,7 +63,7 @@ const axios = __nccwpck_require__(342);
 
 
 (async function main() {
-    const nameOfInstance = core.getInput('instance-name', { required: true });
+    const instance = core.getInput('instance-name', { required: true });
     const orchToolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const pass = core.getInput('devops-integration-user-pass', { required: true });
@@ -91,7 +91,7 @@ const axios = __nccwpck_require__(342);
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
+    const endpoint = `https://${username}:${pass}@${instance}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
     let eventPayload;
     
