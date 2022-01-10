@@ -1,0 +1,36 @@
+name: 'ServiceNow DevOps Notification'
+description: 'Send Sonar Scan Info to ServiceNow Devops'
+inputs:
+  devops-integration-user-name:
+    description: 'Devops Integration User Name'
+    required: true
+  devops-integration-user-pass:
+    description: 'Devops Integration User Pass'
+    required: true
+  instance-name: 
+    description: 'ServiceNow Instance Name'
+    required: true
+  tool-id:
+    description: 'Orchestration Tool Id'
+    required: true
+  context-github:
+    description: 'Github Context'
+    required: true
+  commits:
+    description: 'List of Commits that triggered the run'
+    required: false
+  branch:
+    description: 'Branch Name'
+    required: true
+  sonar-host-url:
+    description: 'Sonar Host Url'
+    required: true
+  sonar-project-key:
+    description: 'Sonar Project Key'
+    required: true 
+branding:
+  icon: 'arrow-right-circle'
+  color: 'blue'
+runs: 
+  using: 'node12'
+  main: 'dist/index.js'
