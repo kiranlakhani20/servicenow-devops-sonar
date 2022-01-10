@@ -19,9 +19,6 @@ inputs:
   commits:
     description: 'List of Commits that triggered the run'
     required: false
-  branch:
-    description: 'Branch Name'
-    required: true
   sonar-host-url:
     description: 'Sonar Host Url'
     required: true
