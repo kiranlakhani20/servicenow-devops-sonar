@@ -31,7 +31,7 @@ const axios = require('axios');
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    const endpoint = `https://${username}:${pass}@${instance}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
+    const endpoint = `https://${username}:${pass}@${instance}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${orchToolId}`;
 
     let eventPayload;
     
