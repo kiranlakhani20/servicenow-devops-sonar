@@ -3,8 +3,8 @@ const axios = require('axios');
 
 
 (async function main() {
-    const instance = core.getInput('instance-name', { required: true });
-    const orchToolId = core.getInput('tool-id', { required: true });
+    const instanceName = core.getInput('instance-name', { required: true });
+    const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const pass = core.getInput('devops-integration-user-pass', { required: true });
     const projectKey = core.getInput('sonar-project-key', { required: true });
@@ -31,13 +31,13 @@ const axios = require('axios');
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    const endpoint = `https://${username}:${pass}@${instance}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${orchToolId}`;
+    const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
-    let eventPayload;
+    let notificationPayload;
     
     try {
-        eventPayload = {
-            orchToolId: orchToolId,
+        notificationPayload = {
+            toolId: toolId,
             buildNumber: githubContext.run_number,
             job: `${githubContext.job}`,
             workflow: `${githubContext.workflow}`,
@@ -49,20 +49,21 @@ const axios = require('axios');
             refType: `${githubContext.ref_type}`
         };
     } catch (e) {
-        core.setFailed(`exception setting event payload ${e}`);
+        core.setFailed(`exception setting notification payload ${e}`);
         return;
     }
 
     if (commits) {
-        eventPayload.commits = commits;
+        notificationPayload.commits = commits;
     }
 
-    let result;
+    let notification;
 
     try {
-        let httpHeaders = { headers: defaultHeaders };
-        result = await axios.post(endpoint, JSON.stringify(eventPayload), httpHeaders);
+        let notificationConfig = { headers: defaultHeaders };
+        notification = await axios.post(endpoint, JSON.stringify(eventPayload), notificationConfig);
     } catch (e) {
         core.setFailed(`exception POSTing event payload to ServiceNow: ${e}\n\n${JSON.stringify(eventPayload)}\n\n${e.toJSON}`);
     }
+    
 })();
