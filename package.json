@@ -1,16 +1,24 @@
 {
-    "name": "sonar-github-action",
-    "version": "1.0.0",
-    "description": "Action to send sonar details",
-    "main": "dist/index.js",
-    "license": "MIT",
-    "scripts": {
-      "build": "ncc build src/main.js -o dist --license licenses.txt"
-    },
-    "author": "velivala",
-    "homepage": "https://github.com/velivalab/sonar-github-action#readme",
-    "dependencies": {
-      "@actions/core": "^1.2.6",
-      "axios": ">=0.21.2"
-    }
+  "name": "sonar-github-action",
+  "version": "1.0.0",
+  "description": "Sonar action",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/velivalab/sonar-github-action.git"
+  },
+  "author": "bhavani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/velivalab/sonar-github-action/issues"
+  },
+  "homepage": "https://github.com/velivalab/sonar-github-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "axios": "^0.24.0",
+    "follow-redirects": "^1.14.7"
   }
+}
