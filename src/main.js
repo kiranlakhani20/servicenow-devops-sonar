@@ -33,10 +33,10 @@ const axios = require('axios');
 
     const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
-    let notificationPayload;
+    let payload;
     
     try {
-        notificationPayload = {
+        payload = {
             toolId: toolId,
             buildNumber: githubContext.run_number,
             job: `${githubContext.job}`,
@@ -49,21 +49,21 @@ const axios = require('axios');
             refType: `${githubContext.ref_type}`
         };
     } catch (e) {
-        core.setFailed(`exception setting notification payload ${e}`);
+        core.setFailed(`exception setting the payload ${e}`);
         return;
     }
 
     if (commits) {
-        notificationPayload.commits = commits;
+        payload.commits = commits;
     }
 
-    let notification;
+    let result;
 
     try {
-        let notificationConfig = { headers: defaultHeaders };
-        notification = await axios.post(endpoint, JSON.stringify(eventPayload), notificationConfig);
+        let httpHeaders = { headers: defaultHeaders };
+        result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
-        core.setFailed(`exception POSTing event payload to ServiceNow: ${e}\n\n${JSON.stringify(eventPayload)}\n\n${e.toJSON}`);
+        core.setFailed(`exception POSTing event payload to ServiceNow: ${e}\n\n${JSON.stringify(payload)}\n\n${e.toJSON}`);
     }
     
 })();

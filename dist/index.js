@@ -4740,8 +4740,8 @@ const axios = __nccwpck_require__(7038);
 
 
 (async function main() {
-    const instance = core.getInput('instance-name', { required: true });
-    const orchToolId = core.getInput('tool-id', { required: true });
+    const instanceName = core.getInput('instance-name', { required: true });
+    const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const pass = core.getInput('devops-integration-user-pass', { required: true });
     const projectKey = core.getInput('sonar-project-key', { required: true });
@@ -4768,13 +4768,13 @@ const axios = __nccwpck_require__(7038);
         core.setFailed(`exception parsing github context ${e}`);
     }
 
-    const endpoint = `https://${username}:${pass}@${instance}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${orchToolId}`;
+    const endpoint = `https://${username}:${pass}@${instanceName}.service-now.com/api/sn_devops/v1/devops/tool/orchestration?toolId=${toolId}`;
 
-    let eventPayload;
+    let payload;
     
     try {
-        eventPayload = {
-            orchToolId: orchToolId,
+        payload = {
+            toolId: toolId,
             buildNumber: githubContext.run_number,
             job: `${githubContext.job}`,
             workflow: `${githubContext.workflow}`,
@@ -4786,22 +4786,23 @@ const axios = __nccwpck_require__(7038);
             refType: `${githubContext.ref_type}`
         };
     } catch (e) {
-        core.setFailed(`exception setting event payload ${e}`);
+        core.setFailed(`exception setting the payload ${e}`);
         return;
     }
 
     if (commits) {
-        eventPayload.commits = commits;
+        payload.commits = commits;
     }
 
     let result;
 
     try {
         let httpHeaders = { headers: defaultHeaders };
-        result = await axios.post(endpoint, JSON.stringify(eventPayload), httpHeaders);
+        result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
-        core.setFailed(`exception POSTing event payload to ServiceNow: ${e}\n\n${JSON.stringify(eventPayload)}\n\n${e.toJSON}`);
+        core.setFailed(`exception POSTing event payload to ServiceNow: ${e}\n\n${JSON.stringify(payload)}\n\n${e.toJSON}`);
     }
+    
 })();
 })();
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Sonar action",
   "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "build": "ncc build src/main.js"
   },
