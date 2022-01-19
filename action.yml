@@ -24,7 +24,10 @@ inputs:
     required: true
   sonar-project-key:
     description: 'Sonar Project Key'
-    required: true 
+    required: true
+  sonar-org-key:
+    description: 'Sonar Organization Key'
+    required: false
 branding:
   icon: 'arrow-right-circle'
   color: 'blue'
