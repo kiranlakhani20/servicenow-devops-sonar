@@ -1,5 +1,5 @@
 {
-  "name": "sonar-github-action",
+  "name": "servicenow-devops-sonar",
   "version": "1.0.0",
   "description": "Sonar action",
   "main": "dist/index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/velivalab/sonar-github-action.git"
+    "url": "git+https://github.com/kiranlakhani20/servicenow-devops-sonar.git"
   },
   "author": "bhavani",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/velivalab/sonar-github-action/issues"
+    "url": "https://github.com/kiranlakhani20/servicenow-devops-sonar/issues"
   },
-  "homepage": "https://github.com/velivalab/sonar-github-action#readme",
+  "homepage": "https://github.com/kiranlakhani20/servicenow-devops-sonar#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "axios": "^0.24.0",
