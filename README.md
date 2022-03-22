@@ -1,1 +1,1 @@
-# sonar-github-action
+# servicenow-devops-sonar
