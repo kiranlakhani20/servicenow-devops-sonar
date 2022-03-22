@@ -1,11 +1,11 @@
-name: 'ServiceNow DevOps Notification'
-description: 'Send Sonar Scan Info to ServiceNow Devops'
+name: 'ServiceNow DevOps Sonar'
+description: 'Send Sonar Scan Information to ServiceNow Devops'
 inputs:
   devops-integration-user-name:
     description: 'Devops Integration User Name'
     required: true
   devops-integration-user-pass:
-    description: 'Devops Integration User Pass'
+    description: 'Devops Integration User Password'
     required: true
   instance-name: 
     description: 'ServiceNow Instance Name'
