@@ -1725,7 +1725,7 @@ const axios = __nccwpck_require__(321);
     try {
         payload = {
             toolId: toolId,
-            buildNumber: githubContext.run_number,
+            buildNumber: githubContext.run_id,
             job: `${githubContext.job}`,
             workflow: `${githubContext.workflow}`,
             projectKey: `${projectKey}`,
