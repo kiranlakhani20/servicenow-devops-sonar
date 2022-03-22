@@ -39,7 +39,7 @@ const axios = require('axios');
     try {
         payload = {
             toolId: toolId,
-            buildNumber: githubContext.run_number,
+            buildNumber: githubContext.run_id,
             job: `${githubContext.job}`,
             workflow: `${githubContext.workflow}`,
             projectKey: `${projectKey}`,
